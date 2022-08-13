@@ -1,35 +1,21 @@
-import { useState } from 'react';
+//Context
+import { useContext } from 'react';
+import { SearchContext } from '../context/SearchContext.js';
 
-const SearchBar = (props) => {
-    const [searchTerm, setSearchTerm] = useState('');
-    // const [message, setMessage] = useState('');
-    // const [data, setData] = useState([]);
+const SearchBar = () => {
+    let { term, handleSearch } = useContext(SearchContext);
     
-    // const handleChange = (e) => {
-    //     setSearch(e.target.value);
-    // }
-    
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setMessage('');
-    //     if (search === '') {
-    //     setMessage('Please enter a search term.');
-    //     } else {
-    //     setData([]);
-    //     props.search(search);
-    //     };
-    // };
-
-
-
     return (
         <div className="search-bar">
-        <form onSubmit={(e)=> props.handleSearch(e, searchTerm)}>
-            <input type="text" placeholder="Search for music..." onChange={(e)=>setSearchTerm(e.target.value)} />  {/*props.handleSearch(e, e.target.value) */}
-            <button type="submit">Search</button>
+        <form>
+            <input ref={term} type="text" placeholder="Search for music..." />  {/*props.handleSearch(e, e.target.value) */}
+            <button onClick={e => handleSearch(e, term.current.value)}>Search</button>
         </form>
         {/* {message ? <h2>{message}</h2> : null} */}
-        <form onSubmit={(e)=>setSearchTerm('')}><button>Clear</button></form>
+        
+        {/*Button to clear Context data */}
+        {/* <button onClick={}>Clear</button> */}
+        
         </div>
     );
 };

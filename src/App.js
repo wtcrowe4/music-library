@@ -1,38 +1,36 @@
-import { useEffect, useState } from 'react';
+//Components
+import { useState, useRef } from 'react';
 import Gallery from './components/Gallery.js';
 import SearchBar from './components/SearchBar.js';
+//Context
+import { DataContext } from './context/DataContext.js';
+import { SearchContext } from './context/SearchContext.js';
+//Styling
 import './App.css';
 
 function App() {
-  let [search, setSearch] = useState('');
   let [message, setMessage] = useState('');
   let [data, setData] = useState([]);
+  let searchInput = useRef('');
 
-  //const API_URL = 'https://itunes.apple.come/search?term='
-
-  useEffect(() => {
-    if(search) {
-    const fetchData = async () => {
-        document.title = `${search} Music Library`;
-        const response = await fetch(`https://itunes.apple.com/search?term=${search}`);  
-        const resData = await response.json();
-        console.log(resData); 
-        if (resData.results.length > 0) {
-            setData(resData.results);
-            setMessage('');
-        } else {
-            setMessage('No results found');
-        }
-    }
-    fetchData();
-  }
-}, [search]);
-
+//API call to get data from iTunes API
 const handleSearch = (e, term) => {
     e.preventDefault();
-    setSearch(term);
+    const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
+    const fetchData = async () => {
+      document.title = `${fetchTerm} Music Library`;
+      const response = await fetch(`https://itunes.apple.com/search?term=${fetchTerm}`);  
+      const resData = await response.json();
+      console.log(resData); 
+      if (resData.results.length > 0) {
+          setData(resData.results);
+          setMessage('');
+      } else {
+          setMessage('No results found');
+      }
+  }
+  fetchData();
 }
-
 
   return (
     <div className="App">
@@ -40,9 +38,16 @@ const handleSearch = (e, term) => {
         <h1>Music Library</h1>
       </header>
       <div className="content">
-        <SearchBar handleSearch={handleSearch}/>
+        <SearchContext.Provider value={{
+            term: searchInput,
+            handleSearch: handleSearch
+        }}>
+          <SearchBar />
+        </SearchContext.Provider>
         {message ? <h2>{message}</h2> : null}
-        <Gallery data={data} />
+        <DataContext.Provider value={data}>
+          <Gallery />
+        </DataContext.Provider>
       </div>
     </div>
   );
