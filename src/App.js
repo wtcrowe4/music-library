@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowerRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Gallery from './components/Gallery.js';
 import SearchBar from './components/SearchBar.js';
 import AlbumView from './components/AlbumView.js';
@@ -41,13 +41,22 @@ const handleSearch = (e, term) => {
       <header className="App-header">
         <h1>Music Library</h1>
       </header>
-      <div className="content">
-        <SearchBar handleSearch={handleSearch}/>
-        {message ? <h2>{message}</h2> : null}
-        <Gallery data={data} />
-        <AlbumView />
-        <ArtistView />
-      </div>
+      {message ? <h2>{message}</h2> : null}
+      <Router>
+        <Routes>
+          <Route path='/' element={
+            // <Fragment> Gets undefined error
+              <div className="content">
+                <SearchBar handleSearch={handleSearch}/>
+                <Gallery data={data} />
+              </div>
+            // </Fragment>
+          } />
+          <Route path='/album/:id' element={<AlbumView/>} />
+          <Route path='/artist/:id' element={<ArtistView/>} />
+          
+        </Routes>
+      </Router>
     </div>
   );
 }

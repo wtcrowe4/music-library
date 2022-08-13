@@ -24,14 +24,12 @@
 
 .gallery-item-simple {
   width: 25vw;
-  height: 20vh;
   border: 1px solid black;
   margin: 2px;
 }
 
 .gallery-item-detailed {
   width: 80vw;
-  height: 20vh;
   border: 1px solid black;
   margin: 2px;
   /* background-image: url(`${props.data.artworkUrl100}`); */
