@@ -2,25 +2,6 @@ import { useState } from 'react';
 
 const SearchBar = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
-    // const [message, setMessage] = useState('');
-    // const [data, setData] = useState([]);
-    
-    // const handleChange = (e) => {
-    //     setSearch(e.target.value);
-    // }
-    
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     setMessage('');
-    //     if (search === '') {
-    //     setMessage('Please enter a search term.');
-    //     } else {
-    //     setData([]);
-    //     props.search(search);
-    //     };
-    // };
-
-
 
     return (
         <div className="search-bar">

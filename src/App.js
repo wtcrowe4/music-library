@@ -8,8 +8,6 @@ function App() {
   let [message, setMessage] = useState('');
   let [data, setData] = useState([]);
 
-  //const API_URL = 'https://itunes.apple.come/search?term='
-
   useEffect(() => {
     if(search) {
     const fetchData = async () => {
@@ -30,7 +28,8 @@ function App() {
 
 const handleSearch = (e, term) => {
     e.preventDefault();
-    setSearch(term);
+    const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
+    setSearch(fetchTerm);
 }
 
 
