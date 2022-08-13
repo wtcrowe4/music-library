@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
+import { BrowerRouter as Router, Route, Link } from 'react-router-dom';
 import Gallery from './components/Gallery.js';
 import SearchBar from './components/SearchBar.js';
+import AlbumView from './components/AlbumView.js';
+import ArtistView from './components/ArtistView.js';
 import './App.css';
 
 function App() {
@@ -42,6 +45,8 @@ const handleSearch = (e, term) => {
         <SearchBar handleSearch={handleSearch}/>
         {message ? <h2>{message}</h2> : null}
         <Gallery data={data} />
+        <AlbumView />
+        <ArtistView />
       </div>
     </div>
   );
