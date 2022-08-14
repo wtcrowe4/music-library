@@ -18,24 +18,32 @@
   color: white;
 }
 
-.App-link {
+h2, h3, h4, h5, p, li  {
+  color:#282c34
+}
+
+link, a {
   color: #61dafb;
 }
 
 .gallery-item-simple {
   width: 25vw;
-  border: 1px solid black;
+  border: 1px solid #282c34;
   margin: 2px;
+  background-color: #282c34;
 }
 
 .gallery-item-detailed {
   width: 80vw;
-  border: 1px solid black;
+  border: 1px solid #282c34;
   margin: 2px;
-  /* background-image: url(`${props.data.artworkUrl100}`); */
+  color: white;
   background-repeat: no-repeat;
   background-size: cover;
-  color: yellow;
+}
+
+.gallery-item-detailed h2, h3, h4, h5, p {
+  color: white;
 }
 
 .search-bar {
@@ -46,4 +54,55 @@
 
 button {
   margin: 5px;
+}
+
+.album-view-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  color:#282c34
+}
+
+.album-view-image {
+  height: 200px;
+  width: 40vw;
+  align-self: center;
+  padding-top: 20px;
+}
+
+.album-view-songs {
+  width: 40vw;
+  
+}
+
+.artist-view-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  height: 100vh;
+  color:#282c34
+}
+
+.artist-view-artist {
+  width: 100vw;
+  color: #282c34;
+  height: 10vh;
+}
+
+.artist-view-artist a {
+  color: #282c34;
+  text-decoration: none;
+  margin: 0px;
+}
+
+.artist-view-songs {
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 33vw;
+  height: 70vh;
 }

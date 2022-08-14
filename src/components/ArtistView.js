@@ -28,19 +28,26 @@ let ArtistView = () => {
     const renderAlbums = justAlbums.map((album, i) => {
         return (
         <Link to={`/album/${album.collectionId}`} key={i}>
-            <div>{album.collectionName}</div>
+            {album.collectionName}
         </Link>
         )
-            
     } );
-
-
+    const artist = artistData.length > 0 ? <h2>{artistData[0].artistName}</h2> : <h2>Loading...</h2>;
+    const itunes = artistData.length > 0 ? artistData[0].artistLinkUrl : null;
+    
     return (
         <div className="artist-view">
-            {navButtons()}
-            {artistData.length > 0 ? <h2>{artistData[0].artistName}</h2> : <h2>Loading...</h2>}
-            {/* <p><a href={}>Check them out on Itunes</a></p> */}
-            {renderAlbums}
+            <div className="nav-bar">
+                {navButtons()}
+            </div>
+            <div className="artist-view-content">
+                <div className="artist-view-artist">
+                        <a href={itunes}> {artist} </a>
+                </div>
+                <div className="artist-view-songs">
+                    {renderAlbums}
+                </div>
+            </div>
         </div>
     );
 };

@@ -13,28 +13,26 @@ function App() {
 
   useEffect(() => {
     if(search) {
-    const fetchData = async () => {
-        document.title = `${search} Music Library`;
-        const response = await fetch(`https://itunes.apple.com/search?term=${search}`);  
-        const resData = await response.json();
-        console.log(resData); 
-        if (resData.results.length > 0) {
-            setData(resData.results);
-            setMessage('');
-        } else {
-            setMessage('No results found');
-        }
+      const fetchData = async () => {
+          document.title = `${search} Music Library`;
+          const response = await fetch(`https://itunes.apple.com/search?term=${search}`);  
+          const resData = await response.json();
+          if (resData.results.length > 0) {
+              setData(resData.results);
+              setMessage('');
+          } else {
+              setMessage('No results found');
+          }
+      }
+      fetchData();
     }
-    fetchData();
+  }, [search]);
+
+  const handleSearch = (e, term) => {
+      e.preventDefault();
+      const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
+      setSearch(fetchTerm);
   }
-}, [search]);
-
-const handleSearch = (e, term) => {
-    e.preventDefault();
-    const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
-    setSearch(fetchTerm);
-}
-
 
   return (
     <div className="App">

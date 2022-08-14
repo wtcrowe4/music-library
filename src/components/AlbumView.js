@@ -25,16 +25,28 @@ let AlbumView = () => {
     } , [id]);
     
     const justSongs = albumData.filter(song => song.wrapperType === 'track');
-    const renderSongs = justSongs.map((song, i) => {
-        return (
-            <div key={i}>{song.trackName}</div>)
-    } );
-
+    const renderSongs = justSongs.map((song, i) => <li key={i}>{song.trackName}</li>)
+    const album = albumData.length > 0 ? <h2>Album: {albumData[0].collectionName}</h2> : <h2>Loading...</h2>
+    const artist = albumData.length > 0 ? albumData[0].artistName : null;
+    const image = albumData.length > 0 ? albumData[0].artworkUrl100: null;
+    const itunes = albumData.length > 0 ? albumData[0].collectionViewUrl: null;
+    
     return (
         <div className="album-view">
-            {navButtons()}
-            {albumData.length > 0 ? <h2>{albumData[0].collectionName}</h2> : <h2>Loading...</h2>}
-            {renderSongs}
+            <div className="nav-bar">
+                {navButtons()}
+            </div>
+
+            <div className="album-view-content">
+                {album}
+                {artist}
+                <div className="album-view-image">
+                    <a href={itunes}> <img src={image} alt={artist} /></a>
+                </div>
+                <div className="album-view-songs">
+                    <ol>{renderSongs}</ol>
+                </div>
+            </div>
         </div>
     );
 };
