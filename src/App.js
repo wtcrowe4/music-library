@@ -1,12 +1,18 @@
-import { useEffect, useState } from 'react';
+//Components
+import { useState, useRef } from 'react';
 import Gallery from './components/Gallery.js';
 import SearchBar from './components/SearchBar.js';
+//Context
+import { DataContext } from './context/DataContext.js';
+import { SearchContext } from './context/SearchContext.js';
+//Styling
 import './App.css';
 
 function App() {
-  let [search, setSearch] = useState('');
   let [message, setMessage] = useState('');
   let [data, setData] = useState([]);
+  let searchInput = useRef('');
+
 
   useEffect(() => {
     if(search) {
@@ -30,8 +36,10 @@ const handleSearch = (e, term) => {
     e.preventDefault();
     const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
     setSearch(fetchTerm);
-}
 
+
+
+}
 
   return (
     <div className="App">
@@ -39,9 +47,16 @@ const handleSearch = (e, term) => {
         <h1>Music Library</h1>
       </header>
       <div className="content">
-        <SearchBar handleSearch={handleSearch}/>
+        <SearchContext.Provider value={{
+            term: searchInput,
+            handleSearch: handleSearch
+        }}>
+          <SearchBar />
+        </SearchContext.Provider>
         {message ? <h2>{message}</h2> : null}
-        <Gallery data={data} />
+        <DataContext.Provider value={data}>
+          <Gallery />
+        </DataContext.Provider>
       </div>
     </div>
   );
