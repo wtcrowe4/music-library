@@ -28,11 +28,8 @@ link, a {
 
 .gallery-item-simple {
   width: 25vw;
-<<<<<<< HEAD
   border: 1px solid #282c34;
-=======
   border: 1px solid black;
->>>>>>> withSuspense
   margin: 2px;
   background-color: #282c34;
 }
@@ -41,10 +38,7 @@ link, a {
   width: 80vw;
   border: 1px solid #282c34;
   margin: 2px;
-<<<<<<< HEAD
   color: white;
-=======
->>>>>>> withSuspense
   background-repeat: no-repeat;
   background-size: cover;
 }

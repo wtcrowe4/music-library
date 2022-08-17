@@ -1,5 +1,5 @@
 //React Imports
-import { useEffect, useState, useRef, Suspense } from 'react';
+import { useEffect, useState, Suspense } from 'react';  //useRef,
 import { createResource as fetchData } from './helper.js';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //Components
@@ -9,8 +9,8 @@ import AlbumView from './components/AlbumView.js';
 import ArtistView from './components/ArtistView.js';
 import Spinner from './components/Spinner.js';
 //Context
-import { DataContext } from './context/DataContext.js';
-import { SearchContext } from './context/SearchContext.js';
+//import { DataContext } from './context/DataContext.js';
+//import { SearchContext } from './context/SearchContext.js';
 //Styling
 import './App.css';
 
@@ -24,7 +24,7 @@ function App() {
   let [message, setMessage] = useState('');
   let [search, setSearch] = useState('');
   let [data, setData] = useState(null);
-  let searchInput = useRef('');
+  //let searchInput = useRef('');
 
 
   // useEffect(() => {
@@ -42,6 +42,7 @@ function App() {
   //     }
   //     fetchData();
   //   }
+  // });
 
   useEffect(() => {
     if(search) {
@@ -88,7 +89,7 @@ const handleSearch = (e, term) => {
       <header className="App-header">
         <h1>Music Library</h1>
       </header>
-
+      {message ? <h2>{message}</h2> : null} 
       {/* <div className="content">
         <SearchContext.Provider value={{
             term: searchInput,
