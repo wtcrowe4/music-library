@@ -4,11 +4,17 @@ import GalleryItem from "./GalleryItem";
 import { useContext } from 'react';
 import { DataContext } from "../context/DataContext.js";
 
+
 const Gallery = () => {
     const data = useContext(DataContext);
-    const display = data.map((item, index) => {
-        return <GalleryItem key={index} data={item} />
-    });
+
+// const Gallery = (props) => {
+//     const data = props.data.results.read();
+// >>>>>>> withSuspense
+//     const display = data.map((item, index) => {
+//         return <GalleryItem key={index} data={item} />
+//     });
+    
     return (
         <div className="gallery">
             {display}
