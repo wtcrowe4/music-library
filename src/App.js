@@ -53,23 +53,13 @@ function App() {
     }  
   }, [search]);
 
-//   const handleSearch = (e, term) => {
-//       e.preventDefault();
-//       const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
-//       setSearch(fetchTerm);
-//   }
-// <<<<<<< HEAD
-// <<<<<<< HEAD
-// }, [search]);
+
 
 const handleSearch = (e, term) => {
     e.preventDefault();
+    setMessage('');
     const fetchTerm = term.charAt(0).toUpperCase() + term.slice(1);
     setSearch(fetchTerm);
-
-
-
-
 }
 
   
@@ -89,7 +79,7 @@ const handleSearch = (e, term) => {
       <header className="App-header">
         <h1>Music Library</h1>
       </header>
-      {message ? <h2>{message}</h2> : null} 
+       
       {/* <div className="content">
         <SearchContext.Provider value={{
             term: searchInput,

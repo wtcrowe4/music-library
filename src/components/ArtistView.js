@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import Spinner from './Spinner.js';
 
 let ArtistView = () => {
     const [artistData, setArtistData] = useState([]);
@@ -40,14 +41,16 @@ let ArtistView = () => {
             <div className="nav-bar">
                 {navButtons()}
             </div>
-            <div className="artist-view-content">
-                <div className="artist-view-artist">
-                        <a href={itunes}> {artist} </a>
+            <Suspense fallback={<Spinner />}>   
+                <div className="artist-view-content">
+                    <div className="artist-view-artist">
+                            <a href={itunes}> {artist} </a>
+                    </div>
+                    <div className="artist-view-songs">
+                        {renderAlbums}
+                    </div>
                 </div>
-                <div className="artist-view-songs">
-                    {renderAlbums}
-                </div>
-            </div>
+            </Suspense>
         </div>
     );
 };

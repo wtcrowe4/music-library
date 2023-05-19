@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import Spinner from './Spinner.js';
 
 let AlbumView = () => {
     const [albumData, setAlbumData] = useState([]);
@@ -36,17 +37,18 @@ let AlbumView = () => {
             <div className="nav-bar">
                 {navButtons()}
             </div>
-
-            <div className="album-view-content">
-                {album}
-                {artist}
-                <div className="album-view-image">
-                    <a href={itunes}> <img src={image} alt={artist} /></a>
+            <Suspense fallback={<Spinner />}>
+                <div className="album-view-content">
+                    {album}
+                    {artist}
+                    <div className="album-view-image">
+                        <a href={itunes}> <img src={image} alt={artist} /></a>
+                    </div>
+                    <div className="album-view-songs">
+                        <ol>{renderSongs}</ol>
+                    </div>
                 </div>
-                <div className="album-view-songs">
-                    <ol>{renderSongs}</ol>
-                </div>
-            </div>
+            </Suspense>
         </div>
     );
 };
